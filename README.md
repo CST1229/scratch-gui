@@ -1,4 +1,4 @@
-scratch-gui modified for use in [TurboWarp](https://turbowarp.org/), modified for use in Codebase. Mostly just does some rebranding and adds a `save_sb3=?` URL parameter, for saving SB3s to a URL.
+scratch-gui modified for use in [TurboWarp](https://turbowarp.org/), modified for use in Codebase. Mostly just does some rebranding and adds a `?save_sb3=*` URL parameter, for saving SB3s to a URL.
 
 Fork of [TurboWarp/scratch-gui](https://github.com/TurboWarp/scratch-gui/).
 
