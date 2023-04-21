@@ -34,6 +34,10 @@ import {
     projectError
 } from '../reducers/project-state';
 
+// really hacky but scratch-gui is a an absolute PAIN to mod
+const searchParams = new URLSearchParams(location.search);
+const saveSB3To = searchParams.get('save_sb3') || null;
+
 /**
  * Higher Order Component to provide behavior for saving projects.
  * @param {React.Component} WrappedComponent the component to add project saving functionality to
@@ -53,6 +57,9 @@ const ProjectSaverHOC = function (WrappedComponent) {
                 'tryToAutoSave'
             ]);
         }
+		getProjectThumbnail () {
+			return null;
+		}
         componentWillMount () {
             if (typeof window === 'object') {
                 // Note: it might be better to use a listener instead of assigning onbeforeunload;
@@ -79,18 +86,6 @@ const ProjectSaverHOC = function (WrappedComponent) {
             }
             if (this.props.isUpdating && !prevProps.isUpdating) {
                 this.updateProjectToStorage();
-            }
-            if (this.props.isCreatingNew && !prevProps.isCreatingNew) {
-                this.createNewProjectToStorage();
-            }
-            if (this.props.isCreatingCopy && !prevProps.isCreatingCopy) {
-                this.createCopyToStorage();
-            }
-            if (this.props.isRemixing && !prevProps.isRemixing) {
-                this.props.onRemixing(true);
-                this.createRemixToStorage();
-            } else if (!this.props.isRemixing && prevProps.isRemixing) {
-                this.props.onRemixing(false);
             }
 
             // see if we should "create" the current project on the server
@@ -154,7 +149,7 @@ const ProjectSaverHOC = function (WrappedComponent) {
         }
         updateProjectToStorage () {
             this.props.onShowSavingAlert();
-            return this.storeProject(this.props.reduxProjectId)
+            return this.storeProject(this.props.reduxProjectId, {saveTo: saveSB3To})
                 .then(() => {
                     // there's an http response object available here, but we don't need to examine
                     // it, because there are no values contained in it that we care about
@@ -168,48 +163,6 @@ const ProjectSaverHOC = function (WrappedComponent) {
                     this.props.onProjectError(err);
                 });
         }
-        createNewProjectToStorage () {
-            return this.storeProject(null)
-                .then(response => {
-                    this.props.onCreatedProject(response.id.toString(), this.props.loadingState);
-                })
-                .catch(err => {
-                    this.props.onShowAlert('creatingError');
-                    this.props.onProjectError(err);
-                });
-        }
-        createCopyToStorage () {
-            this.props.onShowCreatingCopyAlert();
-            return this.storeProject(null, {
-                originalId: this.props.reduxProjectId,
-                isCopy: 1,
-                title: this.props.reduxProjectTitle
-            })
-                .then(response => {
-                    this.props.onCreatedProject(response.id.toString(), this.props.loadingState);
-                    this.props.onShowCopySuccessAlert();
-                })
-                .catch(err => {
-                    this.props.onShowAlert('creatingError');
-                    this.props.onProjectError(err);
-                });
-        }
-        createRemixToStorage () {
-            this.props.onShowCreatingRemixAlert();
-            return this.storeProject(null, {
-                originalId: this.props.reduxProjectId,
-                isRemix: 1,
-                title: this.props.reduxProjectTitle
-            })
-                .then(response => {
-                    this.props.onCreatedProject(response.id.toString(), this.props.loadingState);
-                    this.props.onShowRemixSuccessAlert();
-                })
-                .catch(err => {
-                    this.props.onShowAlert('creatingError');
-                    this.props.onProjectError(err);
-                });
-        }
         /**
          * storeProject:
          * @param  {number|string|undefined} projectId - defined value will PUT/update; undefined/null will POST/create
@@ -219,71 +172,15 @@ const ProjectSaverHOC = function (WrappedComponent) {
         storeProject (projectId, requestParams) {
             requestParams = requestParams || {};
             this.clearAutoSaveTimeout();
-            // Serialize VM state now before embarking on
-            // the asynchronous journey of storing assets to
-            // the server. This ensures that assets don't update
-            // while in the process of saving a project (e.g. the
-            // serialized project refers to a newer asset than what
-            // we just finished saving).
-            const savedVMState = this.props.vm.toJSON();
-            return Promise.all(this.props.vm.assets
-                .filter(asset => !asset.clean)
-                .map(
-                    asset => storage.store(
-                        asset.assetType,
-                        asset.dataFormat,
-                        asset.data,
-                        asset.assetId
-                    ).then(response => {
-                        // Asset servers respond with {status: ok} for successful POSTs
-                        if (response.status !== 'ok') {
-                            // Errors include a `code` property, e.g. "Forbidden"
-                            return Promise.reject(response.code);
-                        }
-                        asset.clean = true;
-                    })
-                )
-            )
-                .then(() => this.props.onUpdateProjectData(projectId, savedVMState, requestParams))
-                .then(response => {
+            return this.props.vm.saveProjectSb3()
+                .then((sb3) => this.props.onUpdateProjectData(projectId, sb3, requestParams))
+                .then(() => {
                     this.props.onSetProjectUnchanged();
-                    const id = response.id.toString();
-                    if (id && this.props.onUpdateProjectThumbnail) {
-                        this.storeProjectThumbnail(id);
-                    }
-                    this.reportTelemetryEvent('projectDidSave');
-                    return response;
                 })
                 .catch(err => {
                     log.error(err);
                     throw err; // pass the error up the chain
                 });
-        }
-
-        /**
-         * Store a snapshot of the project once it has been saved/created.
-         * Needs to happen _after_ save because the project must have an ID.
-         * @param {!string} projectId - id of the project, must be defined.
-         */
-        storeProjectThumbnail (projectId) {
-            try {
-                this.getProjectThumbnail(dataURI => {
-                    this.props.onUpdateProjectThumbnail(projectId, dataURItoBlob(dataURI));
-                });
-            } catch (e) {
-                log.error('Project thumbnail save error', e);
-                // This is intentionally fire/forget because a failure
-                // to save the thumbnail is not vitally important to the user.
-            }
-        }
-
-        getProjectThumbnail (callback) {
-            this.props.vm.postIOData('video', {forceTransparentPreview: true});
-            this.props.vm.renderer.requestSnapshot(dataURI => {
-                this.props.vm.postIOData('video', {forceTransparentPreview: false});
-                callback(dataURI);
-            });
-            this.props.vm.renderer.draw();
         }
 
         /**

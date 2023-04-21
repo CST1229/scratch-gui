@@ -135,6 +135,7 @@
     z-index: 4; /* Make sure selected is always above */
 }
 [theme="dark"] .tab.is-selected {
+    color: $ui-white;
     background-color: $ui-secondary;
 }
 
