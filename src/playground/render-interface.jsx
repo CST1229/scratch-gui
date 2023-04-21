@@ -116,19 +116,15 @@ const Footer = () => (
             <div className={styles.footerText}>
                 <FormattedMessage
                     // eslint-disable-next-line max-len
-                    defaultMessage="PenguinMod and TurboWarp are not affiliated with Scratch, the Scratch Team, or the Scratch Foundation."
-                    description="Disclaimer that PenguinMod and TurboWarp are not connected to Scratch"
-                    id="tw.footer.disclaimer"
+                    defaultMessage="Codebase, PenguinMod and TurboWarp are not affiliated with Scratch, the Scratch Team, or the Scratch Foundation."
+                    description="Disclaimer that Codebase is not connected to Scratch"
+                    id="tw.footer.disclaimer.codebase"
                 />
             </div>
             <div className={styles.footerColumns}>
                 <div className={styles.footerSection}>
-                    <a href="credits.html">
-                        <FormattedMessage
-                            defaultMessage="Credits"
-                            description="Credits link in footer"
-                            id="tw.footer.credits"
-                        />
+                    <a href="https://turbowarp.org">
+						{'TurboWarp'}
                     </a>
                     <a href="https://github.com/sponsors/GarboMuffin">
                         <FormattedMessage
@@ -137,47 +133,12 @@ const Footer = () => (
                             id="tw.footer.donate"
                         />
                     </a>
-                </div>
-                <div className={styles.footerSection}>
-                    <a href="https://studio.penguinmod.site/PenguinMod-Packager">
-                        {/* Do not translate */}
-                        {'PenguinMod Packager'}
-                    </a>
-                    <a href="https://desktop.turbowarp.org/">
-                        {/* Do not translate */}
-                        {'TurboWarp Desktop'}
-                    </a>
-                    <a href="https://docs.turbowarp.org/embedding">
-                        <FormattedMessage
-                            defaultMessage="Embedding"
-                            description="Menu bar item for embedding link"
-                            id="tw.footer.embed"
-                        />
-                    </a>
-                    <a href="https://docs.turbowarp.org/url-parameters">
-                        <FormattedMessage
-                            defaultMessage="URL Parameters"
-                            description="Menu bar item for URL parameters link"
-                            id="tw.footer.parameters"
-                        />
-                    </a>
-                    <a href="https://docs.turbowarp.org/translate">
-                        <FormattedMessage
-                            defaultMessage="Help Translate TurboWarp"
-                            description="Menu bar item for translating TurboWarp link"
-                            id="tw.footer.translate"
-                        />
+                    <a href="https://penguinmod.site">
+                        {'PenguinMod'}
                     </a>
                 </div>
                 <div className={styles.footerSection}>
-                    <a href="https://discord.gg/NZ9MBMYTZh">
-                        <FormattedMessage
-                            defaultMessage="Feedback & Bugs"
-                            description="Link to feedback/bugs page"
-                            id="tw.feedback"
-                        />
-                    </a>
-                    <a href="https://github.com/PenguinMod">
+                    <a href="https://github.com/CST1229/scratch-gui/tree/codebase">
                         <FormattedMessage
                             defaultMessage="Source Code"
                             description="Link to source code"
@@ -209,9 +170,9 @@ class Interface extends React.Component {
     }
     handleUpdateProjectTitle(title, isDefault) {
         if (isDefault || !title) {
-            document.title = `PenguinMod - ${this.props.intl.formatMessage(messages.defaultTitle)}`;
+            document.title = `Codebase Editor`;
         } else {
-            document.title = `${title} - PenguinMod`;
+            document.title = `${title} - Codebase`;
         }
     }
     render() {
@@ -300,53 +261,16 @@ class Interface extends React.Component {
                                     <CloudVariableBadge />
                                 </div>
                             )}
-                            {description.instructions || description.credits ? (
-                                <div className={styles.section}>
-                                    <Description
-                                        instructions={description.instructions}
-                                        credits={description.credits}
-                                        projectId={projectId}
-                                    />
-                                </div>
-                            ) : null}
-                            <VoteFrame id={projectId} darkmode={this.props.isDark}></VoteFrame>
-                            {isHomepage && window.FetchedProjectRemixes ? (
-                                <div>
-                                    {/* i have absolutely no interest in figuring out how the hell to get this to work properly */}
-                                    <div style={{ display: "none" }}>{window.ForceProjectRemixListUpdate}</div>
-                                    <p>Remixes of <b>{window.LastFetchedProject.name}</b></p>
-                                    <div className={styles.remixList}>
-                                        {window.FetchedProjectRemixes.map(remix => {
-                                            return <a key={remix.id} href={"#" + remix.id} style={{ textDecoration: "none", width: "115%" }}>
-                                                <div className={styles.remixProject}>
-                                                    <img style={{ height: "72px" }} src={remix.image} alt={remix.name}></img>
-                                                    <div style={{ width: "100%", display: "flex", textAlign: "left", textDecoration: "none", flexDirection: "column", alignItems: "flex-start" }}>
-                                                        <p style={{ fontSize: "1em" }}><b>{remix.name}</b></p>
-                                                        <p style={{ fontSize: "1em" }}>by <b>{remix.owner}</b></p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        })}
-                                    </div>
-                                </div>
-                            ) : null}
-                            {((window.LastFetchedProject) != null) ? (
-                                <a target="_blank" href={"https://penguinmod.site/profile?user=" + window.LastFetchedProject.owner}>View other projects by {window.LastFetchedProject.owner}</a>
-                            ) : null}
                             <div className={styles.section}>
                                 <p>
                                     <FormattedMessage
                                         // eslint-disable-next-line max-len
-                                        defaultMessage="PenguinMod is a mod of TurboWarp to add new blocks and features either in extensions or in PenguinMod's main toolbox. TurboWarp is a Scratch mod that compiles projects to JavaScript to make them run really fast. Try it out by choosing an uploaded project below or making your own in the editor."
-                                        description="Description of PenguinMod and TurboWarp"
-                                        id="tw.home.description"
+                                        defaultMessage="A modified version of PenguinMod (which is a mod of GarboMuffin's TurboWarp), mostly for saving projects to Codebase."
+                                        description="Description"
+                                        id="tw.home.description.cbe"
                                     />
                                 </p>
                             </div>
-                            <div className={styles.section}>
-                                <FeaturedProjects />
-                            </div>
-                            <a target="_blank" href="https://penguinmod.site/search?q=all:projects">View projects in new tab</a>
                         </React.Fragment>
                     ) : null}
                 </div>
@@ -396,7 +320,7 @@ const ConnectedInterface = injectIntl(connect(
 const WrappedInterface = compose(
     AppStateHOC,
     ErrorBoundaryHOC('TW Interface'),
-    TWProjectMetaFetcherHOC,
+    // TWProjectMetaFetcherHOC,
     TWStateManagerHOC,
     TWThemeHOC,
     TWRestorePointHOC,

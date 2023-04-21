@@ -259,7 +259,8 @@ const reducer = function (state, action) {
         }
         return state;
     case START_AUTO_UPDATING:
-        if (state.loadingState === LoadingState.SHOWING_WITH_ID) {
+        // if (state.loadingState === LoadingState.SHOWING_WITH_ID) {
+        if (true) {
             return Object.assign({}, state, {
                 loadingState: LoadingState.AUTO_UPDATING
             });
@@ -295,28 +296,32 @@ const reducer = function (state, action) {
         }
         return state;
     case START_MANUAL_UPDATING:
-        if (state.loadingState === LoadingState.SHOWING_WITH_ID) {
-            return Object.assign({}, state, {
+        // if (state.loadingState === LoadingState.SHOWING_WITH_ID) {
+        if (true) {
+			return Object.assign({}, state, {
                 loadingState: LoadingState.MANUAL_UPDATING
             });
         }
         return state;
     case START_REMIXING:
-        if (state.loadingState === LoadingState.SHOWING_WITH_ID) {
-            return Object.assign({}, state, {
+        //if (state.loadingState === LoadingState.SHOWING_WITH_ID) {
+        if (false) {
+			return Object.assign({}, state, {
                 loadingState: LoadingState.REMIXING
             });
         }
         return state;
     case START_UPDATING_BEFORE_CREATING_COPY:
-        if (state.loadingState === LoadingState.SHOWING_WITH_ID) {
+        // if (state.loadingState === LoadingState.SHOWING_WITH_ID) {
+        if (false) {
             return Object.assign({}, state, {
                 loadingState: LoadingState.UPDATING_BEFORE_COPY
             });
         }
         return state;
     case START_UPDATING_BEFORE_CREATING_NEW:
-        if (state.loadingState === LoadingState.SHOWING_WITH_ID) {
+        // if (state.loadingState === LoadingState.SHOWING_WITH_ID) {
+        if (false) {
             return Object.assign({}, state, {
                 loadingState: LoadingState.UPDATING_BEFORE_NEW
             });
