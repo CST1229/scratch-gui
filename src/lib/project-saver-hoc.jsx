@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import VM from 'scratch-vm';
+import xhr from 'xhr';
 
 import collectMetadata from '../lib/collect-metadata';
 import log from '../lib/log';
@@ -37,6 +38,7 @@ import {
 // really hacky but scratch-gui is a an absolute PAIN to mod
 const searchParams = new URLSearchParams(location.search);
 const saveSB3To = searchParams.get('save_sb3') || null;
+const saveThumbTo = searchParams.get('save_thumb') || null;
 
 /**
  * Higher Order Component to provide behavior for saving projects.
@@ -57,9 +59,6 @@ const ProjectSaverHOC = function (WrappedComponent) {
                 'tryToAutoSave'
             ]);
         }
-		getProjectThumbnail () {
-			return null;
-		}
         componentWillMount () {
             if (typeof window === 'object') {
                 // Note: it might be better to use a listener instead of assigning onbeforeunload;
@@ -171,16 +170,48 @@ const ProjectSaverHOC = function (WrappedComponent) {
          */
         storeProject (projectId, requestParams) {
             requestParams = requestParams || {};
+			console.log(saveThumbTo);
             this.clearAutoSaveTimeout();
             return this.props.vm.saveProjectSb3()
                 .then((sb3) => this.props.onUpdateProjectData(projectId, sb3, requestParams))
                 .then(() => {
                     this.props.onSetProjectUnchanged();
+                    if (saveThumbTo) {
+                        this.storeProjectThumbnail(saveThumbTo);
+                    }
                 })
                 .catch(err => {
                     log.error(err);
                     throw err; // pass the error up the chain
                 });
+        }
+
+        /**
+         * Store a snapshot of the project once it has been saved/created.
+		 * @param {string} url The URL to save to.
+         */
+        storeProjectThumbnail (url) {
+            this.getProjectThumbnail(dataURI => {
+				const opts = {
+					body: dataURItoBlob(dataURI),
+					headers: {
+						'Content-Type': 'application/octet-stream'
+					},
+					method: "put",
+					url: saveThumbTo,
+					withCredentials: false
+				};
+				xhr(opts, (err, response) => {});
+            });
+        }
+
+        getProjectThumbnail (callback) {
+            this.props.vm.postIOData('video', {forceTransparentPreview: true});
+            this.props.vm.renderer.requestSnapshot(dataURI => {
+                this.props.vm.postIOData('video', {forceTransparentPreview: false});
+                callback(dataURI);
+            });
+            this.props.vm.renderer.draw();
         }
 
         /**
