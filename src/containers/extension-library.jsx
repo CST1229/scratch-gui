@@ -49,10 +49,12 @@ class ExtensionLibrary extends React.PureComponent {
             return;
         }
 
+        /*
         // eslint-disable-next-line no-alert
         if (item.incompatibleWithScratch && !confirm(this.props.intl.formatMessage(messages.incompatible))) {
             return;
         }
+        */
 
         const url = item.extensionURL ? item.extensionURL : extensionId;
         if (!item.disabled) {
