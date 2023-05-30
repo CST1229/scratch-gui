@@ -108,8 +108,14 @@ import jgStorageExtensionIcon from './penguinmod/extensions/storage.png';
 import jgTimersExtensionIcon from './penguinmod/extensions/multipletimers.png';
 import jgAdvancedTextExtensionIcon from './penguinmod/extensions/advancedtext.png';
 
+import jgJavascriptExtensionIcon from './penguinmod/extensions/javascript.png';
+
+// category expansions
+import pmOperatorsExpansionExtensionIcon from './penguinmod/extensions/operators_expanded.png';
+import pmSensingExpansionExtensionIcon from './penguinmod/extensions/sensing_expanded.png';
+
 // jg: default icon if you are too lazy to make one and you want me to make one instead lololololololol
-// gsa: olololololo
+// gsa: ololololololo
 import defaultExtensionIcon from './penguinmod/extensions/placeholder.png'
 
 const urlParams = new URLSearchParams(location.search);
@@ -272,8 +278,24 @@ const menuItems = [
         name: 'Extended Sound',
         extensionId: 'jgExtendedAudio',
         iconURL: jgExtendedAudioExtensionIcon,
-        tags: ['penguinmod'],
+        tags: ['penguinmod', 'categoryexpansion'],
         description: 'Free speed and pitch control, starting sounds at certain positions, stopping sounds, etc.',
+        featured: true
+    },
+    {
+        name: "Operators Expansion",
+        extensionId: 'pmOperatorsExpansion',
+        iconURL: pmOperatorsExpansionExtensionIcon,
+        tags: ["penguinmod", 'categoryexpansion'],
+        description: "More operators like nand, nor, character code to character, reading multiple lined text line by line, etc.",
+        featured: true
+    },
+    {
+        name: "Sensing Expansion",
+        extensionId: 'pmSensingExpansion',
+        iconURL: pmSensingExpansionExtensionIcon,
+        tags: ["penguinmod", 'categoryexpansion'],
+        description: "More sensing blocks for specific use cases or interacting with the user's device.",
         featured: true
     },
     {
@@ -307,7 +329,7 @@ const menuItems = [
     {
         name: 'Clones+',
         extensionId: 'https://extensions.turbowarp.org/LukeManiaStudios/ClonesPlus.js',
-        tags: ['turbowarp'],
+        tags: ['turbowarp', 'categoryexpansion'],
         iconURL: 'https://extensions.turbowarp.org/images/LukeManiaStudios/ClonesPlus.svg',
         insetIconURL: turbowarpIcon,
         description: "Expansion of Scratch's clone features.",
@@ -563,6 +585,14 @@ const menuItems = [
         featured: true
     },
     {
+        name: "JavaScript",
+        extensionId: 'jgJavascript',
+        iconURL: jgJavascriptExtensionIcon,
+        tags: ["penguinmod", "programminglanguage"],
+        description: "Run your own custom code written in JavaScript!",
+        featured: true
+    },
+    {
         name: (
             <FormattedMessage
                 defaultMessage="TurboWarp Blocks"
@@ -809,7 +839,7 @@ if (IsLocal || IsLiveTests) {
             tags: ["penguinmod"],
             customInsetColor: '#B200FF',
             insetIconURL: jg3dInsetExtensionIcon,
-            description: 'Use the magic of 3D to spice up your project.\nThis extension is still HIGHLY in development. DO NOT USE THIS IN PRODUCTION as blocks are subject to change and may corrupt your projects.',
+            description: 'Use the magic of 3D to spice up your project.',
             featured: true
         },
         {
@@ -830,6 +860,22 @@ if (IsLocal || IsLiveTests) {
             description: "In development.\nThis extension is still HIGHLY in development. DO NOT USE THIS IN PRODUCTION as blocks are subject to change and may corrupt your projects.",
             featured: true
         },
+        {
+            name: "Costume Drawing",
+            extensionId: 'jgCostumeDrawing',
+            iconURL: defaultExtensionIcon,
+            tags: ["penguinmod"],
+            description: "Draw on and edit your costumes (either temporarily or not) while the project is running.\nThis extension is still HIGHLY in development. DO NOT USE THIS IN PRODUCTION as blocks are subject to change and may corrupt your projects.",
+            featured: true
+        },
+        // {
+        //     name: "Javascript",
+        //     extensionId: 'jgJavascript',
+        //     iconURL: defaultExtensionIcon,
+        //     tags: ["penguinmod"],
+        //     description: "this shit should have been removed from PM permanently",
+        //     featured: true
+        // },
         {
             name: "the doo doo extension",
             extensionId: 'jgDooDoo',

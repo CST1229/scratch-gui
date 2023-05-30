@@ -5,6 +5,32 @@ import React from 'react';
 import CustomProceduresComponent from '../components/custom-procedures/custom-procedures.jsx';
 import LazyScratchBlocks from '../lib/tw-lazy-scratch-blocks';
 import {connect} from 'react-redux';
+import Color from './custom-procedures-util/color.js';
+
+function createHeavyColorFromHex(hex, percentage) {
+    const rgb = Color.hexToRgb(hex);
+    const hsv = Color.rgbToHsv(rgb);
+
+    if (hsv.v > 0.6) {
+        // so that pure white can still get color change
+        hsv.v -= percentage / 2;
+    }
+    // only white-black have this property
+    // so we can avoid adding red to them
+    if (!(hsv.h === 0 && hsv.s === 0)) {
+        hsv.s += percentage * hsv.v;
+    }
+
+    // make sure values arent invalid
+    if (hsv.v > 1) hsv.v = 1;
+    if (hsv.v < 0) hsv.v = 0;
+
+    if (hsv.s > 1) hsv.s = 1;
+    if (hsv.s < 0) hsv.s = 0;
+
+    const newRgb = Color.hsvToRgb(hsv);
+    return Color.rgbToHex(newRgb);
+}
 
 class CustomProcedures extends React.Component {
     constructor (props) {
@@ -18,13 +44,17 @@ class CustomProcedures extends React.Component {
             'handleCancel',
             'handleOk',
             'handleChangeType',
-            'setBlocks'
+            'handleBlockColorChange',
+            'setHexBlockColor',
+            'setBlocks',
+            'handleTestFunction'
         ]);
         this.state = {
             rtlOffset: 0,
             warp: false,
             returns: false,
             editing: false,
+            blockColor: '#000000',
             type: 'statement'
         };
     }
@@ -112,11 +142,22 @@ class CustomProcedures extends React.Component {
         this.setState({
             warp: this.mutationRoot.getWarp(),
             returns: this.mutationRoot.getReturns(),
-            editing: this.mutationRoot.getEdited()
+            editing: this.mutationRoot.getEdited(),
+            // sometimes color[0] exists but sometimes it doesnt
+            // i can blame gsa for this or just do nothing about it :troll:
+            blockColor: this.mutationRoot.color ? this.mutationRoot.color[0] : this.mutationRoot.colour_
         });
         // Allow the initial events to run to position this block, then focus.
         setTimeout(() => {
             this.mutationRoot.focusLastEditor_();
+            // if editing, apply block color
+            if (this.state.editing && this.mutationRoot.color) {
+                this.handleBlockColorChange({
+                    target: {
+                        value: this.mutationRoot.color[0]
+                    }
+                });
+            }
         });
     }
     handleCancel () {
@@ -164,11 +205,45 @@ class CustomProcedures extends React.Component {
             this.setState({type: newType})
         }
     }
+    handleBlockColorChange (element) {
+        if (this.mutationRoot) {
+            const newColor = element.target.value;
+            this.mutationRoot.setColor(
+                newColor,
+                createHeavyColorFromHex(newColor, 0.15),
+                createHeavyColorFromHex(newColor, 0.25)
+            );
+            this.setState({blockColor: newColor});
+        }
+    }
+    setHexBlockColor (hex) {
+        this.handleBlockColorChange({
+            target: {
+                value: hex
+            }
+        });
+    }
+    handleTestFunction (type) {
+        if (this.mutationRoot) {
+            switch (type) {
+                case 'icon': {
+                    const iconUri = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAADwUExURf/////////////z8//v7//u7v/n5//j4//5+f/////////MzP+3t//////////9/f////+trf/////////Ozv/Pz//////////39//Jyf/8/P/////////////+/v/z8//////////S0v/Hx//////////e3v/e3v/////////////r6//e3v/j4//u7v////+Ghv+Fhf+Dg/95ef+bm/+Xl/+lpf+trf+rq/+fn/+kpP+Tk/9tbf+Cgv+Hh/9ZWf+cnP9ycv9bW/+Jif99ff+Li//ExP+zs/+EhP+Kiv+YmP9vb/+4uP9ubv+Bgf////kftB4AAAAwdFJOUwAQfdDW2u37siNq9f2ImKV0/JlH8PVlD6D6z2gMIc/DGDbt90Yr4uMvBHLr/fXjbhcejrAAAAABYktHRACIBR1IAAAAB3RJTUUH5wUYBDIzz3HsIQAAAHNJREFUCNdjYGRiZmFhZWPn4GTg4jYwMDA0MubhZeAzMTUzt7C0suZnEBC0trG1s7dzEGIQFnF0snV2cRYVYxCXkLSyc3WTkpZhYJCVc/fw9JJXYGBgUFTyNvfxVVYBMlXVjPz8DNQ1gExNLW0dXT19TQYA+wMO76YS2sEAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDUtMjRUMDQ6NTA6NTArMDA6MDDybVL4AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTA1LTI0VDA0OjUwOjUwKzAwOjAwgzDqRAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wNS0yNFQwNDo1MDo1MSswMDowMHJSwC8AAAAASUVORK5CYII=';
+                    this.mutationRoot.setImage(iconUri);
+                    break;
+                }
+                case 'removeicon': {
+                    this.mutationRoot.unsetImage();
+                    break;
+                }
+            }
+        }
+    }
     render () {
         return (
             <CustomProceduresComponent
                 componentRef={this.setBlocks}
                 warp={this.state.warp}
+                blockColor={this.state.blockColor}
                 returns={this.state.returns}
                 onAddBoolean={this.handleAddBoolean}
                 onAddLabel={this.handleAddLabel}
@@ -180,6 +255,9 @@ class CustomProcedures extends React.Component {
                 editing={this.state.editing}
                 selectedType={this.state.type}
                 onOutputTypeChanged={this.handleChangeType}
+                onBlockColorChange={this.handleBlockColorChange}
+                setHexBlockColor={this.setHexBlockColor}
+                onTestStart={this.handleTestFunction}
             />
         );
     }

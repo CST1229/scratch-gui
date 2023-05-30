@@ -9976,8 +9976,8 @@
     "minilog" "^3.0.1"
     "startaudiocontext" "1.2.1"
 
-"scratch-blocks@file:../scratch-blocks":
-  "resolved" "file:../scratch-blocks"
+"scratch-blocks@github:PenguinMod/PenguinMod-Blocks#develop-builds":
+  "resolved" "git+ssh://git@github.com/PenguinMod/PenguinMod-Blocks.git#376672481795bf40823b36d46099eb543af84cef"
   "version" "0.1.0"
   dependencies:
     "exports-loader" "0.7.0"
