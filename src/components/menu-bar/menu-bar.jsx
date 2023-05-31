@@ -855,7 +855,7 @@ class MenuBar extends React.Component {
                             />
                         ) : []))}
                     </div>
-                    {/* tw: add a feedback button */}
+                    {/*
                     <div className={styles.menuBarItem}>
                         {this.props.isShowingProject && this.props.canEditTitle && (!window.location.href.includes("#")) ?
                             (<ShareButton
@@ -871,7 +871,6 @@ class MenuBar extends React.Component {
                             rel="noopener noreferrer"
                             target="_blank"
                         >
-                            {/* todo: icon */}
                             <Button className={styles.feedbackButton}>
                                 <FormattedMessage
                                     defaultMessage="Back to Home"
@@ -881,6 +880,7 @@ class MenuBar extends React.Component {
                             </Button>
                         </a>
                     </div>
+					*/}
                 </div>
 
                 <div className={styles.accountInfoGroup}>
