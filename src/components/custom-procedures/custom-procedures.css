@@ -31,9 +31,16 @@
     cursor: pointer;
     border-radius: 2400px;
     height: 15px;
+    overflow: hidden;
 }
 [theme="dark"] .body input[type="color"] {
     border: 1px solid #ddd;
+}
+.color-text, .color-input {
+    vertical-align: middle;
+}
+.color-input {
+    margin-right: 1em;
 }
 ::-webkit-color-swatch-wrapper {
     padding: 0;
@@ -57,10 +64,11 @@
 .preset-color {
     border: 1px solid #333;
     margin: 4px;
-    margin-left: 0px;
+    margin-left: 0;
     border-radius: 4px;
     width: 1em;
     height: 1em;
+    vertical-align: middle;
 }
 [theme="dark"] .preset-color {
     border: 1px solid #ddd;
@@ -94,7 +102,7 @@
     background: white;
     border: 2px solid $ui-black-transparent;
     border-radius: $space;
-    padding: calc($space * 2);
+    padding: $space;
     text-align: center;
     flex-grow: 1;
     cursor: pointer;
@@ -160,4 +168,20 @@
 
 .cancel-button {
     color: black;
+}
+
+.checkbox-flex-row {
+    display: flex;
+    gap: 1em;
+}
+.checkbox-flex-static {
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.checkbox-flex-rest {
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    justify-content: stretch;
+    gap: 1em;
 }
