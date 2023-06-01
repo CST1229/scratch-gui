@@ -4,9 +4,9 @@ const showSaveFilePicker = fileName => window.showSaveFilePicker({
     suggestedName: fileName,
     types: [
         {
-            description: 'PenguinMod Project',
+            description: 'Codebase Project',
             accept: {
-                'application/x.scratch.sb3': '.pm'
+                'application/x.scratch.sb3': '.cb2'
             }
         }
     ],
@@ -20,7 +20,7 @@ const showOpenFilePicker = async () => {
             {
                 description: 'Scratch Project',
                 accept: {
-                    'application/x.scratch.sb3': ['.sb', '.sb2', '.sb3', '.pm']
+                    'application/x.scratch.sb3': ['.sb', '.sb2', '.sb3', '.pm', '.cb2']
                 }
             }
         ]

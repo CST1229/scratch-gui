@@ -15,8 +15,8 @@ import log from '../lib/log';
 const getProjectTitleFromFilename = fileInputFilename => {
     if (!fileInputFilename) return '';
     // only parse title with valid scratch project extensions
-    // (.sb, .sb2, .sb3, and .pm)
-    const matches = fileInputFilename.match(/^(.*)(\.sb[23]?|\.pm)$/);
+    // (.sb, .sb2, .sb3, and .pm and also .cb2)
+    const matches = fileInputFilename.match(/^(.*)(\.sb[23]?|\.pm|\.cb2)$/);
     if (!matches) return '';
     return matches[1].substring(0, 100); // truncate project title to max 100 chars
 };
@@ -145,7 +145,7 @@ const getProjectFilename = (curTitle, defaultTitle) => {
     if (!filenameTitle || filenameTitle.length === 0) {
         filenameTitle = defaultTitle;
     }
-    return `${filenameTitle.substring(0, 100)}.pm`;
+    return `${filenameTitle.substring(0, 100)}.cb2`;
 };
 
 SB3Downloader.propTypes = {
