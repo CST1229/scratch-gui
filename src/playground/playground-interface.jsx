@@ -17,10 +17,10 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
-import { getIsLoading } from '../reducers/project-state.js';
+import {connect} from 'react-redux';
+import {compose} from 'redux';
+import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
+import {getIsLoading} from '../reducers/project-state.js';
 import DOMElementRenderer from '../containers/dom-element-renderer.jsx';
 import AppStateHOC from '../lib/app-state-hoc.jsx';
 import ErrorBoundaryHOC from '../lib/error-boundary-hoc.jsx';
@@ -33,7 +33,7 @@ import SettingsStore from '../addons/settings-store-singleton';
 import '../lib/tw-fix-history-api';
 import GUI from './render-gui.jsx';
 import AddonChannels from '../addons/channels';
-import { loadServiceWorker } from './load-service-worker';
+import {loadServiceWorker} from './load-service-worker';
 import runAddons from '../addons/entry';
 
 import styles from './interface.css';
@@ -61,23 +61,23 @@ if (AddonChannels.changeChannel) {
 runAddons();
 
 class Interface extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.handleUpdateProjectTitle = this.handleUpdateProjectTitle.bind(this);
     }
-    componentDidUpdate(prevProps) {
+    componentDidUpdate (prevProps) {
         if (prevProps.isLoading && !this.props.isLoading) {
             loadServiceWorker();
         }
     }
-    handleUpdateProjectTitle(title, isDefault) {
+    handleUpdateProjectTitle (title, isDefault) {
         if (isDefault || !title) {
-            document.title = `PenguinMod - ${this.props.intl.formatMessage(messages.defaultTitle)}`;
+            document.title = `Codebase - ${this.props.intl.formatMessage(messages.defaultTitle)}`;
         } else {
-            document.title = `${title} - PenguinMod`;
+            document.title = `${title} - Codebase Editor`;
         }
     }
-    render() {
+    render () {
         const {
             /* eslint-disable no-unused-vars */
             intl,
@@ -110,7 +110,7 @@ class Interface extends React.Component {
                 >
                     <GUI
                         onClickTheme={onClickTheme}
-                        isPlayground={true}
+                        isPlayground
                         onUpdateProjectTitle={this.handleUpdateProjectTitle}
                         backpackVisible
                         backpackHost="_local_"

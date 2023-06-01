@@ -17,14 +17,13 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from 'react-intl';
-import { getIsLoading } from '../reducers/project-state.js';
+import {connect} from 'react-redux';
+import {compose} from 'redux';
+import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
+import {getIsLoading} from '../reducers/project-state.js';
 import DOMElementRenderer from '../containers/dom-element-renderer.jsx';
 import AppStateHOC from '../lib/app-state-hoc.jsx';
 import ErrorBoundaryHOC from '../lib/error-boundary-hoc.jsx';
-import TWProjectMetaFetcherHOC from '../lib/tw-project-meta-fetcher-hoc.jsx';
 import TWStateManagerHOC from '../lib/tw-state-manager-hoc.jsx';
 import TWThemeHOC from '../lib/tw-theme-hoc.jsx';
 import SBFileUploaderHOC from '../lib/sb-file-uploader-hoc.jsx';
@@ -33,27 +32,23 @@ import TWRestorePointHOC from '../lib/tw-restore-point-hoc.jsx';
 import SettingsStore from '../addons/settings-store-singleton';
 import '../lib/tw-fix-history-api';
 import GUI from './render-gui.jsx';
-import VoteFrame from './vote-frame.jsx';
 import MenuBar from '../components/menu-bar/menu-bar.jsx';
-import ProjectInput from '../components/tw-project-input/project-input.jsx';
-import FeaturedProjects from '../components/tw-featured-projects/featured-projects.jsx';
-import Description from '../components/tw-description/description.jsx';
 import WebGlModal from '../containers/webgl-modal.jsx';
 import BrowserModal from '../components/browser-modal/browser-modal.jsx';
 import CloudVariableBadge from '../components/tw-cloud-variable-badge/cloud-variable-badge.jsx';
-import { isRendererSupported, isBrowserSupported } from '../lib/tw-environment-support-prober';
+import {isRendererSupported, isBrowserSupported} from '../lib/tw-environment-support-prober';
 import AddonChannels from '../addons/channels';
-import { loadServiceWorker } from './load-service-worker';
+import {loadServiceWorker} from './load-service-worker';
 import runAddons from '../addons/entry';
 
 import styles from './interface.css';
 import restore from './restore.js';
 
 const urlparams = new URLSearchParams(location.search);
-const restoring = urlparams.get("restore");
-const restoreHandler = urlparams.get("handler");
-if (String(restoring) === "true") {
-    console.log(restore)
+const restoring = urlparams.get('restore');
+const restoreHandler = urlparams.get('handler');
+if (String(restoring) === 'true') {
+    console.log(restore);
     restore(restoreHandler);
 }
 
@@ -68,14 +63,6 @@ const handleClickAddonSettings = () => {
     const path = process.env.ROUTING_STYLE === 'wildcard' ? 'addons' : 'addons.html';
     window.open(`${process.env.ROOT}${path}`);
 };
-
-const messages = defineMessages({
-    defaultTitle: {
-        defaultMessage: 'A mod of TurboWarp',
-        description: 'Title of homepage',
-        id: 'tw.guiDefaultTitle'
-    }
-});
 
 const WrappedMenuBar = compose(
     SBFileUploaderHOC,
@@ -96,20 +83,6 @@ if (AddonChannels.changeChannel) {
 
 runAddons();
 
-const projectDetailCache = {};
-const getProjectDetailsById = async (id) => {
-    // if we have already gotten the details of this project, avoid making another request since they likely never changed
-    if (projectDetailCache[String(id)] != null) return projectDetailCache[String(id)];
-
-    const response = await fetch(`https://projects.penguinmod.site/api/projects/getPublished?id=${id}`);
-    // Don't continue if the api never returned 200-299 since we would cache an error as project details
-    if (!response.ok) return {};
-
-    const project = await response.json();
-    projectDetailCache[String(id)] = project;
-    return projectDetailCache[String(id)];
-};
-
 const Footer = () => (
     <footer className={styles.footer}>
         <div className={styles.footerContent}>
@@ -124,7 +97,7 @@ const Footer = () => (
             <div className={styles.footerColumns}>
                 <div className={styles.footerSection}>
                     <a href="https://turbowarp.org">
-						{'TurboWarp'}
+                        {'TurboWarp'}
                     </a>
                     <a href="https://github.com/sponsors/GarboMuffin">
                         <FormattedMessage
@@ -138,7 +111,7 @@ const Footer = () => (
                     </a>
                 </div>
                 <div className={styles.footerSection}>
-                    <a href="https://github.com/CST1229/scratch-gui/tree/codebase">
+                    <a href="https://github.com/CST1229/scratch-gui/tree/codebase-2">
                         <FormattedMessage
                             defaultMessage="Source Code"
                             description="Link to source code"
@@ -159,23 +132,23 @@ const Footer = () => (
 );
 
 class Interface extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.handleUpdateProjectTitle = this.handleUpdateProjectTitle.bind(this);
     }
-    componentDidUpdate(prevProps) {
+    componentDidUpdate (prevProps) {
         if (prevProps.isLoading && !this.props.isLoading) {
             loadServiceWorker();
         }
     }
-    handleUpdateProjectTitle(title, isDefault) {
+    handleUpdateProjectTitle (title, isDefault) {
         if (isDefault || !title) {
             document.title = `Codebase Editor`;
         } else {
             document.title = `${title} - Codebase`;
         }
     }
-    render() {
+    render () {
         const {
             /* eslint-disable no-unused-vars */
             intl,
@@ -213,6 +186,7 @@ class Interface extends React.Component {
                 <div
                     className={styles.center}
                     style={isPlayerOnly ? ({
+                        // eslint-disable-next-line no-warning-comments
                         // add a couple pixels to account for border (TODO: remove weird hack)
                         width: `${Math.max(480, props.customStageSize.width) + 2}px`
                     }) : null}
@@ -228,28 +202,6 @@ class Interface extends React.Component {
                     />
                     {isHomepage ? (
                         <React.Fragment>
-                            {/* project not approved message */}
-                            {(window.LastFetchedProject) != null && (window.LastFetchedProject.accepted == false) ? (
-                                <div className={styles.remixWarningBox}>
-                                    <p>This project is not approved. Be careful when running this project.</p>
-                                </div>
-                            ) : null}
-                            {/* project too large to remix message */}
-                            {(window.LastFetchedProject) != null && (window.LastFetchedProject.tooLarge == true) ? (
-                                <div className={styles.remixWarningBox}>
-                                    <p>This project is too large to be remixed. If you would like to remix this project, please contact someone who can manually upload it for you.</p>
-                                </div>
-                            ) : null}
-                            {/* its time for some absolutely BANGER react code boys */}
-                            {(window.LastFetchedProject) != null && (window.LastFetchedProject.remix != null) ? (
-                                <div className={styles.unsharedUpdate}>
-                                    <div style={{ display: "flex", flexDirection: "row" }}>
-                                        <a style={{ height: "32px" }} target="_blank" href={"https://penguinmod.site/profile?user=" + projectDetailCache[String(window.LastFetchedProject.remix)]?.owner}><img style={{ marginRight: "4px", borderRadius: "4px" }} width="32" height="32" title={projectDetailCache[String(window.LastFetchedProject.remix)]?.owner} alt={projectDetailCache[String(window.LastFetchedProject.remix)]?.owner} src={"https://projects.penguinmod.site/api/pmWrapper/scratchUserImage?username=" + projectDetailCache[String(window.LastFetchedProject.remix)]?.owner}></img></a>
-                                        <p>Thanks to <b><a target="_blank" href={"https://penguinmod.site/profile?user=" + projectDetailCache[String(window.LastFetchedProject.remix)]?.owner}>{projectDetailCache[String(window.LastFetchedProject.remix)]?.owner}</a></b> for the original project <b><a href={window.location.origin + "/#" + projectDetailCache[String(window.LastFetchedProject.remix)]?.id}>{projectDetailCache[String(window.LastFetchedProject.remix)]?.name}</a></b>.</p>
-                                    </div>
-                                    <div style={{ display: 'none' }}>{getProjectDetailsById(window.LastFetchedProject.remix).yesIDefinetlyKnowHowToUseReactProperlyShutUp}</div>
-                                </div>
-                            ) : null}
                             {isRendererSupported() ? null : (
                                 <WebGlModal isRtl={isRtl} />
                             )}

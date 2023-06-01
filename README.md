@@ -1,4 +1,6 @@
-scratch-gui modified for use in [TurboWarp](https://turbowarp.org/) ([source](https://github.com/TurboWarp/scratch-gui)), modified for use in [PenguinMod](https://penguinmod.site/) ([source](https://github.com/PenguinMod/PenguinMod.github.io)), modified for use in Codebase (quite recursive!). Mostly just does some rebranding and adds a `?save_sb3=*` URL parameter, for saving SB3s to a URL.
+scratch-gui modified for use in [TurboWarp](https://turbowarp.org/) ([source](https://github.com/TurboWarp/scratch-gui)), modified for use in [PenguinMod](https://penguinmod.site/) ([source](https://github.com/PenguinMod/PenguinMod.github.io)), modified for use in Codebase (quite recursive!). Does some rebranding, adds URL parameters for saving projects to URL and some other minor things.
+
+Other parts of the editor's source code are in other repos (scratch-paint, vm, render and blocks), usually on a `codebase` or `codebase-2` branch.
 
 ## Setup
 

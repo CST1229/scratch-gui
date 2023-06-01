@@ -1,4 +1,4 @@
-import { FormattedMessage } from 'react-intl';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -12,7 +12,7 @@ import internetConnectionIconURL from './internet-connection.svg';
 
 /* eslint-disable react/prefer-stateless-function */
 class LibraryItemComponent extends React.PureComponent {
-    render() {
+    render () {
         return this.props.featured ? (
             <div
                 className={classNames(
@@ -42,11 +42,12 @@ class LibraryItemComponent extends React.PureComponent {
                     />
                 </div>
                 {(this.props.insetIconURL && !this.props.customInsetColor) ? (
-                    <div className={
-                        this.props.twDeveloper ?
-                            classNames(styles.libraryItemInsetImageContainer, styles.twLibraryItemInsetImageContainer)
-                            : styles.libraryItemInsetImageContainer
-                    }
+                    <div
+                        className={
+                            this.props.twDeveloper ?
+                                classNames(styles.libraryItemInsetImageContainer, styles.twLibraryItemInsetImageContainer)
+                                : styles.libraryItemInsetImageContainer
+                        }
                     >
                         <img
                             className={styles.libraryItemInsetImage}
@@ -55,10 +56,11 @@ class LibraryItemComponent extends React.PureComponent {
                     </div>
                 ) : null}
                 {(this.props.insetIconURL && this.props.customInsetColor) ? (
-                    <div className={
-                        styles.libraryItemInsetImageContainerNoBg
-                    }
-                        style={{ backgroundColor: this.props.customInsetColor }}
+                    <div
+                        className={
+                            styles.libraryItemInsetImageContainerNoBg
+                        }
+                        style={{backgroundColor: this.props.customInsetColor}}
                     >
                         <img
                             className={styles.libraryItemInsetImage}
@@ -128,7 +130,7 @@ class LibraryItemComponent extends React.PureComponent {
                                     {this.props.twDeveloper ? (
                                         <div>
                                             <div>
-                                                Originally for TurboWarp by
+                                                {'Originally for TurboWarp by'}
                                             </div>
                                             <div
                                                 className={styles.featuredExtensionMetadataDetail}
@@ -140,7 +142,7 @@ class LibraryItemComponent extends React.PureComponent {
                                     {this.props.extDeveloper ? (
                                         <div>
                                             <div>
-                                                Created by
+                                                {'Created by'}
                                             </div>
                                             <div
                                                 className={styles.featuredExtensionMetadataDetail}
@@ -152,7 +154,7 @@ class LibraryItemComponent extends React.PureComponent {
                                     {this.props.eventSubmittor ? (
                                         <div>
                                             <div>
-                                                Event Submission by
+                                                {'Event Submission by'}
                                             </div>
                                             <div
                                                 className={styles.featuredExtensionMetadataDetail}
@@ -164,7 +166,7 @@ class LibraryItemComponent extends React.PureComponent {
                                     {this.props.credits ? (
                                         <div>
                                             <div>
-                                                Credits
+                                                {'Credits'}
                                             </div>
                                             <div
                                                 className={styles.featuredExtensionMetadataDetail}
@@ -181,8 +183,8 @@ class LibraryItemComponent extends React.PureComponent {
             <Box
                 className={classNames(
                     styles.libraryItem, {
-                    [styles.hidden]: this.props.hidden
-                }
+                        [styles.hidden]: this.props.hidden
+                    }
                 )}
                 role="button"
                 tabIndex="0"

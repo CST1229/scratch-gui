@@ -55,9 +55,7 @@ import turbowarpIcon from './penguinmod/extensions/turbowarp_icon.svg';
 
 import customExtensionIcon from './custom/custom.svg';
 
-import filesExtensionIcon from './penguinmod/extensions/files.png';
 import jgWebsiteRequestsExtensionIcon from './penguinmod/extensions/websiteRequests.png';
-import jgJSONExtensionIcon from './penguinmod/extensions/json.png';
 import jgRuntimeExtensionIcon from './penguinmod/extensions/runtime.png';
 import jgPrismExtensionIcon from './penguinmod/extensions/prism.png';
 
@@ -267,7 +265,7 @@ const menuItems = [
         featured: true
     },
     {
-        name: 'Extended Sound',
+        name: 'Sound Groups',
         extensionId: 'jgExtendedAudio',
         iconURL: jgExtendedAudioExtensionIcon,
         tags: ['penguinmod', 'categoryexpansion'],
@@ -361,7 +359,7 @@ const menuItems = [
         extensionId: 'jgStorage',
         iconURL: jgStorageExtensionIcon,
         tags: ['penguinmod'],
-        description: 'Store data after PenguinMod has already been closed out. Basic Server Storage is also included.',
+        description: 'Store data after the project has already been closed out. Uses PenguinMod\'s servers.',
         eventSubmittor: 'Fir & silvxrcat',
         featured: true
     },
@@ -378,9 +376,8 @@ const menuItems = [
         name: 'CloudLink',
         extensionId: 'https://extensions.turbowarp.org/cloudlink.js',
         tags: ['turbowarp'],
-        insetIconURL: turbowarpIcon,
-        iconURL: 'https://extensions.turbowarp.org/images/cloudlink.svg',
         insetIconURL: cloudlinkIcon,
+        iconURL: 'https://extensions.turbowarp.org/images/cloudlink.svg',
         description: 'A powerful websocket extension.',
         featured: true,
         extDeveloper: 'MikeDEV',
@@ -582,7 +579,7 @@ const menuItems = [
         name: 'JavaScript',
         extensionId: 'jgJavascript',
         iconURL: jgJavascriptExtensionIcon,
-        tags: ['penguinmod', 'programminglanguage'],
+        tags: ['penguinmod'],
         description: 'Run your own custom (sandboxed) code written in JavaScript!',
         featured: true
     },
