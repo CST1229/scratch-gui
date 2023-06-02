@@ -265,11 +265,11 @@ const menuItems = [
         featured: true
     },
     {
-        name: 'Sound Groups',
+        name: 'Audio Groups',
         extensionId: 'jgExtendedAudio',
         iconURL: jgExtendedAudioExtensionIcon,
         tags: ['penguinmod', 'categoryexpansion'],
-        description: 'Free speed and pitch control, starting sounds at certain positions, stopping sounds, etc.',
+        description: 'Create groups of sounds, with pitch, speed and volume control, stopping sounds and more. Called "Extended Sound" in PenguinMod.',
         featured: true
     },
     {
