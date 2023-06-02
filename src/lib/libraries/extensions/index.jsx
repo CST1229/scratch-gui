@@ -106,7 +106,7 @@ import jgStorageExtensionIcon from './penguinmod/extensions/storage.png';
 import jgTimersExtensionIcon from './penguinmod/extensions/multipletimers.png';
 import jgAdvancedTextExtensionIcon from './penguinmod/extensions/advancedtext.png';
 
-import jgJavascriptExtensionIcon from './penguinmod/extensions/javascript.png';
+// import jgJavascriptExtensionIcon from './penguinmod/extensions/javascript.png';
 
 // category expansions
 import pmOperatorsExpansionExtensionIcon from './penguinmod/extensions/operators_expanded.png';
@@ -575,6 +575,7 @@ const menuItems = [
         description: "Get a user's Scratch name to prove they are a real Scratch user.",
         featured: true
     },
+    /*
     {
         name: 'JavaScript',
         extensionId: 'jgJavascript',
@@ -583,6 +584,7 @@ const menuItems = [
         description: 'Run your own custom (sandboxed) code written in JavaScript!',
         featured: true
     },
+    */
     {
         name: (
             <FormattedMessage
