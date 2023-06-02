@@ -80,7 +80,7 @@
     "redux": "3.7.2",
     "redux-throttle": "0.1.1",
     "scratch-audio": "github:PenguinMod/PenguinMod-Audio#develop",
-    "scratch-blocks": "github:CST1229/scratch-blocks#codebase-2-builds",
+    "scratch-blocks": "github:CST1229/scratch-blocks#codebase-builds",
     "scratch-paint": "github:CST1229/scratch-paint#codebase",
     "scratch-render": "github:CST1229/scratch-render#codebase",
     "scratch-render-fonts": "1.0.0-prerelease.20210401210003",
