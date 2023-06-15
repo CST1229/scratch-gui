@@ -24,7 +24,12 @@ import LoadScratchBlocksHOC from '../lib/tw-load-scratch-blocks-hoc.jsx';
 import {connect} from 'react-redux';
 import {updateToolbox} from '../reducers/toolbox';
 import {activateColorPicker} from '../reducers/color-picker';
-import {closeExtensionLibrary, openSoundRecorder, openConnectionModal} from '../reducers/modals';
+import {
+    closeExtensionLibrary,
+    openSoundRecorder,
+    openConnectionModal,
+    openCustomExtensionModal
+} from '../reducers/modals';
 import {activateCustomProcedures, deactivateCustomProcedures} from '../reducers/custom-procedures';
 import {setConnectionModalExtensionId} from '../reducers/connection-modal';
 import {updateMetrics} from '../reducers/workspace-metrics';
@@ -140,8 +145,6 @@ class Blocks extends React.Component {
                     throw new Error('invalid protocol');
                 }
                 window.open(docsURI, '_blank');
-            } catch (e) {
-                log.warn('cannot open docs URI', e);
             }
         });
 
@@ -590,6 +593,7 @@ class Blocks extends React.Component {
             onActivateColorPicker,
             onOpenConnectionModal,
             onOpenSoundRecorder,
+            onOpenCustomExtensionModal,
             updateToolboxState,
             onActivateCustomProcedures,
             onRequestCloseExtensionLibrary,
@@ -627,6 +631,7 @@ class Blocks extends React.Component {
                         liveTest={this.props.isLiveTest}
                         onCategorySelected={this.handleCategorySelected}
                         onRequestClose={onRequestCloseExtensionLibrary}
+                        onOpenCustomExtensionModal={this.props.onOpenCustomExtensionModal}
                     />
                 ) : null}
                 {customProceduresVisible ? (
@@ -659,6 +664,7 @@ Blocks.propTypes = {
     onActivateCustomProcedures: PropTypes.func,
     onOpenConnectionModal: PropTypes.func,
     onOpenSoundRecorder: PropTypes.func,
+    onOpenCustomExtensionModal: PropTypes.func,
     onRequestCloseCustomProcedures: PropTypes.func,
     onRequestCloseExtensionLibrary: PropTypes.func,
     options: PropTypes.shape({
@@ -754,6 +760,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(activateTab(SOUNDS_TAB_INDEX));
         dispatch(openSoundRecorder());
     },
+    onOpenCustomExtensionModal: () => dispatch(openCustomExtensionModal()),
     onRequestCloseExtensionLibrary: () => {
         dispatch(closeExtensionLibrary());
     },

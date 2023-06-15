@@ -240,6 +240,7 @@ LibraryItemComponent.propTypes = {
     featured: PropTypes.bool,
     hidden: PropTypes.bool,
     iconURL: PropTypes.string,
+    incompatibleWithScratch: PropTypes.bool,
     insetIconURL: PropTypes.string,
     customInsetColor: PropTypes.string,
     internetConnectionRequired: PropTypes.bool,

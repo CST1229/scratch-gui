@@ -30,6 +30,7 @@ const PackagerIntegrationHOC = function (WrappedComponent) {
         handleClickPackager () {
             if (this.props.canOpenPackager) {
                 window.open(`${PACKAGER_URL}/?import_from=${location.origin}`);
+                window.open(`${PACKAGER_URL}/?import_from=${location.origin}`);
             }
         }
         handleMessage (e) {
@@ -42,7 +43,7 @@ const PackagerIntegrationHOC = function (WrappedComponent) {
             }
 
             if (!e.data.p4) {
-                return
+                return;
             }
 
             const packagerData = e.data.p4;

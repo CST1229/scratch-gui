@@ -101,7 +101,7 @@ const Footer = () => (
                     </a>
                     <a href="https://github.com/sponsors/GarboMuffin">
                         <FormattedMessage
-                            defaultMessage="Donate to TurboWarp Developer"
+                            defaultMessage="Donate to TurboWarp"
                             description="Donation link in footer"
                             id="tw.footer.donate"
                         />

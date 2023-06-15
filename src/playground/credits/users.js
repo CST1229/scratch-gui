@@ -14,11 +14,20 @@ const fromHardcoded = ({userId, username, name}) => ({
     text: name || username
 });
 
-const fromHardcodedGithub = (username) => ({
+const fromHardcodedGithub = username => ({
     image: `https://github.com/${username}.png`,
     href: `https://github.com/${username}/`,
     text: username
 });
+
+const fromHardcodedDiscord = async userId => {
+    const res = await fetch(`https://pmupdatereader.jeremygamer13.repl.co/user/${userId}`);
+    const json = await res.json();
+    return {
+        image: json.avatarURL,
+        text: json.username
+    };
+};
 
 const addonDevelopers = [
     {
@@ -118,17 +127,22 @@ const pmDevelopers = [
     'showierdata9978'
 ].map(fromHardcodedGithub);
 
+const logoArtists = Promise.all([
+    '593554048188416001'
+].map(fromHardcodedDiscord));
+
 const extensionDevelopers = [
     'GarboMuffin',
     'griffpatch',
     'DT-is-not-available',
     'Vadik1',
     'MikeDev',
-    'LukeManiaStudioss'
-].map(fromHardcodedGithub)
+    'LilyMakesThings'
+].map(fromHardcodedGithub);
 
 export default {
     addonDevelopers: shuffle(addonDevelopers),
     pmDevelopers: shuffle(pmDevelopers),
+    logoArtists: shuffle(logoArtists),
     extensionDevelopers: shuffle(extensionDevelopers)
 };

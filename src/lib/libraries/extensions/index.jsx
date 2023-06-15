@@ -74,14 +74,10 @@ import griffpatchPhysicsIcon from './penguinmod/extensions/griffpatch_physicsIco
 import gp from './penguinmod/extensions/gamepad.svg';
 import clippingblending from './penguinmod/extensions/clippingblending.svg';
 
-// cl waw
-// import cloudlinkThumb from './penguinmod/extensions/cloudlinkThumb.png';
-import cloudlinkIcon from './penguinmod/extensions/cloudlinkIcon.svg';
-
 import pointerlockThumb from './penguinmod/extensions/pointerlock.svg';
 import cursorThumb from './penguinmod/extensions/cursor.svg';
 
-// lukemania studio 🙏
+// LilyMakesThings 🙏
 import lmsMcUtilsIcon from './penguinmod/extensions/mcutils.png';
 
 // more icons so they arent just red when the extension color is not red
@@ -290,13 +286,13 @@ const menuItems = [
     },
     {
         name: 'Clones+',
-        extensionId: 'https://extensions.turbowarp.org/LukeManiaStudios/ClonesPlus.js',
+        extensionId: 'https://extensions.turbowarp.org/LukeManiaStudios/ClonesPlus.js', // update reference once file names are updated
         tags: ['turbowarp', 'categoryexpansion'],
-        iconURL: 'https://extensions.turbowarp.org/images/LukeManiaStudios/ClonesPlus.svg',
+        iconURL: 'https://extensions.turbowarp.org/images/LukeManiaStudios/ClonesPlus.svg', // update reference once file names are updated
         insetIconURL: turbowarpIcon,
         description: "Expansion of Scratch's clone features.",
         featured: true,
-        twDeveloper: 'LukeManiaStudios'
+        twDeveloper: 'LilyMakesThings'
     },
     {
         name: 'Physics',
@@ -459,13 +455,13 @@ const menuItems = [
     },
     {
         name: 'McUtils',
-        extensionId: 'https://extensions.turbowarp.org/LukeManiaStudios/McUtils.js',
+        extensionId: 'https://extensions.turbowarp.org/LukeManiaStudios/McUtils.js', // update reference once file names are updated
         tags: ['turbowarp'],
         iconURL: lmsMcUtilsIcon,
         insetIconURL: turbowarpIcon,
         description: 'Basic utilities for any fast food employee.',
         featured: true,
-        twDeveloper: 'LukeManiaStudios'
+        twDeveloper: 'LilyMakesThings'
     },
     {
         name: (
@@ -789,7 +785,7 @@ const menuItems = [
         name: (
             <FormattedMessage
                 defaultMessage="Custom Extension"
-                description="Name of custom extension category"
+                description="Name of library item to load a custom extension from a remote source"
                 id="tw.customExtension.name"
             />
         ),
@@ -797,11 +793,13 @@ const menuItems = [
         iconURL: customExtensionIcon,
         description: (
             <FormattedMessage
-                defaultMessage="Load custom extensions from URLs. For developers. Experimental."
-                description="Description of custom extension category"
+                defaultMessage="Load custom extensions from URLs, files, or JavaScript source code."
+                description="Description of library item to load a custom extension from a custom source"
                 id="tw.customExtension.description"
             />
         ),
+        tags: ['tw'],
+        incompatibleWithScratch: true,
         featured: true
     }
 ];
@@ -879,7 +877,7 @@ if ((IsLocal || IsLiveTests) && !urlParams.has('noLiveTest')) {
         //     extensionId: 'jgJavascript',
         //     iconURL: defaultExtensionIcon,
         //     tags: ["penguinmod"],
-        //     description: "this shit should have been removed from PM permanently",
+        //     description: "this should have been removed from PM permanently",
         //     featured: true
         // },
         {
