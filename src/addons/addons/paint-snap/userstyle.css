@@ -8,7 +8,7 @@
   filter: brightness(0) invert(1);
 }
 .sa-paint-snap-button[data-enabled="true"] {
-  background-color: #ff4c4c;
+  background-color: #4364fb;
 }
 
 .sa-paint-snap-group {

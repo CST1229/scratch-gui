@@ -147,9 +147,12 @@ class Stage extends React.Component {
     attachMouseEvents (canvas) {
         document.addEventListener('mousemove', this.onMouseMove);
         document.addEventListener('mouseup', this.onMouseUp);
+        document.addEventListener('touchmove', this.onMouseMove);
+        document.addEventListener('touchend', this.onMouseUp);
         document.addEventListener('touchmove', this.onTouchMove);
         document.addEventListener('touchend', this.onTouchUp);
         canvas.addEventListener('mousedown', this.onMouseDown);
+        canvas.addEventListener('touchstart', this.onMouseDown);
         canvas.addEventListener('touchstart', this.onTouchDown);
         canvas.addEventListener('wheel', this.onWheel);
         canvas.addEventListener('contextmenu', this.onContextMenu);
@@ -157,9 +160,12 @@ class Stage extends React.Component {
     detachMouseEvents (canvas) {
         document.removeEventListener('mousemove', this.onMouseMove);
         document.removeEventListener('mouseup', this.onMouseUp);
+        document.removeEventListener('touchmove', this.onMouseMove);
+        document.removeEventListener('touchend', this.onMouseUp);
         document.removeEventListener('touchmove', this.onTouchMove);
         document.removeEventListener('touchend', this.onTouchUp);
         canvas.removeEventListener('mousedown', this.onMouseDown);
+        canvas.removeEventListener('touchstart', this.onMouseDown);
         canvas.removeEventListener('touchstart', this.onTouchDown);
         canvas.removeEventListener('wheel', this.onWheel);
         canvas.removeEventListener('contextmenu', this.onContextMenu);

@@ -102,6 +102,8 @@ import jgStorageExtensionIcon from './penguinmod/extensions/storage.png';
 import jgTimersExtensionIcon from './penguinmod/extensions/multipletimers.png';
 import jgAdvancedTextExtensionIcon from './penguinmod/extensions/advancedtext.png';
 
+import cloudlinkIcon from './penguinmod/extensions/cloudlinkIcon.svg';
+
 // import jgJavascriptExtensionIcon from './penguinmod/extensions/javascript.png';
 
 // category expansions

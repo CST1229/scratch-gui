@@ -145,6 +145,8 @@ class Blocks extends React.Component {
                     throw new Error('invalid protocol');
                 }
                 window.open(docsURI, '_blank');
+            } catch (e) {
+                // ignore
             }
         });
 
