@@ -335,16 +335,6 @@ const menuItems = [
         featured: true
     },
     {
-        name: '3D Physics',
-        extensionId: 'fr3d',
-        iconURL: fr3dPhysicsExtensionIcon,
-        tags: ['penguinmod'],
-        customInsetColor: '#D066FE',
-        insetIconURL: fr3dPhysicsInsetExtensionIcon,
-        description: 'Physics for the 3D extension.',
-        featured: true
-    },
-    {
         name: 'Tweening',
         extensionId: 'jgTween',
         credits: 'easings.net & Arrow',
@@ -979,7 +969,17 @@ if ((IsLocal || IsLiveTests) && !urlParams.has('noLiveTest')) {
             tags: ['penguinmod'],
             description: 'In development. Currently not publicly available.',
             featured: true
-        }
+        },
+        {
+            name: '3D Physics',
+            extensionId: 'fr3d',
+            iconURL: fr3dPhysicsExtensionIcon,
+            tags: ['penguinmod'],
+            customInsetColor: '#D066FE',
+            insetIconURL: fr3dPhysicsInsetExtensionIcon,
+            description: 'Physics for the 3D extension.',
+            featured: true
+        },
     ];
     extras.forEach(ext => {
         menuItems.push(ext);
