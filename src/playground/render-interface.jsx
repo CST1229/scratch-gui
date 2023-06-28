@@ -125,6 +125,13 @@ const Footer = () => (
                             id="tw.privacy"
                         />
                     </a>
+                    <a href="credits.html">
+                        <FormattedMessage
+                            defaultMessage="Credits"
+                            description="Credits link in footer"
+                            id="tw.footer.credits"
+                        />
+                    </a>
                 </div>
             </div>
         </div>

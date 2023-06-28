@@ -30,6 +30,7 @@ const motion = function (isInitialSetup, isStage, targetId) {
                 </shadow>
             </value>
         </block>
+        <!--
         <block type="motion_movebacksteps">
             <value name="STEPS">
                 <shadow type="math_number">
@@ -37,6 +38,7 @@ const motion = function (isInitialSetup, isStage, targetId) {
                 </shadow>
             </value>
         </block>
+        -->
         <block type="motion_moveupdownsteps">
             <value name="STEPS">
                 <shadow type="math_number">
@@ -177,7 +179,9 @@ const motion = function (isInitialSetup, isStage, targetId) {
                 </shadow>
             </value>
         </block>
+        <!--
         <block type="motion_turnaround"/>
+        -->
         ${blockSeparator}
         <block type="motion_changexby">
             <value name="DX">
@@ -760,7 +764,6 @@ const control = function (isInitialSetup, isStage) {
         ${blockSeparator}
         <block type="control_get_counter"/>
         <block type="control_incr_counter"/>
-        ${LazyScratchBlocks.isNameUrMom() ? '<block type="your_mom"/>' : ''}
         <block type="control_decr_counter"/>
         <block type="control_set_counter">
             <value name="VALUE">

@@ -54,9 +54,20 @@ const Credits = () => (
     <main className={styles.main}>
         <header className={styles.headerContainer}>
             <h1 className={styles.headerText}>
-                PenguinMod Credits
+                Credits
             </h1>
         </header>
+        <section>
+            <h1>Codebase</h1>
+            <p>
+                Codebase was created by JeiJBMC (<code>jeijbmc9040</code> on Discord).
+                <br />
+                The Codebase Editor is a modification of PenguinMod,
+                by <a href="https://github.com/CST1229/">CST1229</a>.
+                <br />
+                PenguinMod&apos;s credits can be seen below:
+            </p>
+        </section>
         <section>
             <h1>PenguinMod</h1>
         </section>

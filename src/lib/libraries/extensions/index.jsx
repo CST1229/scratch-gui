@@ -56,6 +56,7 @@ import turbowarpIcon from './penguinmod/extensions/turbowarp_icon.svg';
 import customExtensionIcon from './custom/custom.svg';
 
 import jgWebsiteRequestsExtensionIcon from './penguinmod/extensions/websiteRequests.png';
+import jgJSONExtensionIcon from './penguinmod/extensions/json.png';
 import jgRuntimeExtensionIcon from './penguinmod/extensions/runtime.png';
 import jgPrismExtensionIcon from './penguinmod/extensions/prism.png';
 
@@ -116,7 +117,7 @@ import jgPathfindingExtensionIcon from './penguinmod/extensions/pathfinding.png'
 import jgAnimationExtensionIcon from './penguinmod/extensions/animation.png';
 
 // category expansions
-import pmControlsExpansionExtensionIcon from './penguinmod/extensions/controls_expanded.png';
+// import pmControlsExpansionExtensionIcon from './penguinmod/extensions/controls_expanded.png';
 import pmSensingExpansionExtensionIcon from './penguinmod/extensions/sensing_expanded.png';
 import pmOperatorsExpansionExtensionIcon from './penguinmod/extensions/operators_expanded.png';
 
@@ -978,7 +979,7 @@ if ((IsLocal || IsLiveTests) && !urlParams.has('noLiveTest')) {
             tags: ['penguinmod'],
             description: 'In development. Currently not publicly available.',
             featured: true
-        },
+        }
     ];
     extras.forEach(ext => {
         menuItems.push(ext);
