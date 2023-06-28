@@ -34,6 +34,30 @@ const load = () => {
             _ScratchBlocks = m.default;
 
             if (isNameUrMom()) {
+                _ScratchBlocks.Blocks.your_mom = {
+                    init () {
+                        this.jsonInit({
+                            message0: 'your mom %1',
+                            args0: [
+                                {
+                                    type: 'field_image',
+                                    src: 'https://cdn.discordapp.com/emojis/1039714598959452261.webp?size=128&quality=lossless',
+                                    width: 15,
+                                    height: 15,
+                                    alt: '*',
+                                    flipRtl: false
+                                }
+                            ],
+                            inputsInline: true,
+                            previousStatement: null,
+                            nextStatement: null,
+                            colour: '#ff0000',
+                            tooltip: 'your mom :trel:',
+                            helpUrl: 'https://tenor.com/view/urmom-your-mom-baldi-defaultdance-gif-19665250'
+                        });
+                    }
+                };
+
                 const oldFieldRenderer = _ScratchBlocks.BlockSvg.prototype.renderFields_;
                 _ScratchBlocks.BlockSvg.prototype.renderFields_ = function (fieldList, cursorX,
                     cursorY) {
@@ -66,7 +90,7 @@ const load = () => {
                                 this.appendDummyInput('yourMom')
                                     .appendField('your mom')
                                     .appendField(new _ScratchBlocks.FieldImage(
-                                        'https://cdn.discordapp.com/emojis/1039714598959452261.webp?size=128&quality=lossless',
+                                        'https://penguinmod.site/dump/1039714598959452261.webp',
                                         15,
                                         15,
                                         '*',
@@ -78,7 +102,7 @@ const load = () => {
                             }
                             this.setColour('#ff0000');
                             this.setTooltip('your mom :trel:');
-                            this.setHelpUrl('https://tenor.com/view/urmom-your-mom-baldi-defaultdance-gif-19665250');
+                            this.setHelpUrl('https://penguinmod.site/dump/urmom-your-mom.gif');
                         };
                     }
                     const oldLoad = _ScratchBlocks.Blocks[prototypeName].domToMutation;
@@ -88,7 +112,7 @@ const load = () => {
                             this.appendDummyInput('yourMom')
                                 .appendField('your mom')
                                 .appendField(new _ScratchBlocks.FieldImage(
-                                    'https://cdn.discordapp.com/emojis/1039714598959452261.webp?size=128&quality=lossless',
+                                    'https://penguinmod.site/dump/1039714598959452261.webp',
                                     15,
                                     15,
                                     '*',
@@ -100,7 +124,7 @@ const load = () => {
                         }
                         this.setColour('#ff0000');
                         this.setTooltip('your mom :trel:');
-                        this.setHelpUrl('https://tenor.com/view/urmom-your-mom-baldi-defaultdance-gif-19665250');
+                        this.setHelpUrl('https://penguinmod.site/dump/urmom-your-mom.gif');
                     };
                     oldConstructor.call(this, ...args);
                 };

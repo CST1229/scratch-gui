@@ -63,6 +63,12 @@ import jwProtoExtensionIcon from './penguinmod/extensions/proto.png';
 
 import jwStructsExtensionIcon from './penguinmod/extensions/ooplogo.png';
 
+import iygPerlinNoiseExtensionIcon from './penguinmod/extensions/perlinnoisebanner.png';
+
+// cl waw
+// import cloudlinkThumb from './penguinmod/extensions/cloudlinkThumb.png';
+import cloudlinkIcon from './penguinmod/extensions/cloudlinkIcon.svg';
+
 // thx jeremey
 import canvasExtensionBanner from './penguinmod/extensions/CanvasExtensionMenu.png';
 import canvasExtensionIcon from './penguinmod/extensions/CanvasSmall.png';
@@ -78,7 +84,7 @@ import pointerlockThumb from './penguinmod/extensions/pointerlock.svg';
 import cursorThumb from './penguinmod/extensions/cursor.svg';
 
 // LilyMakesThings 🙏
-import lmsMcUtilsIcon from './penguinmod/extensions/mcutils.png';
+// import lmsMcUtilsIcon from './penguinmod/extensions/mcutils.png';
 
 // more icons so they arent just red when the extension color is not red
 import gsaTempVariablesExtensionIcon from './penguinmod/extensions/tempvariables.png';
@@ -89,6 +95,7 @@ import jgScratchAuthExtensionIcon from './penguinmod/extensions/scratchauth.png'
 import jgPermissionExtensionIcon from './penguinmod/extensions/permissions.png';
 import silvxrcatOddMessagesExtensionIcon from './penguinmod/extensions/oddmessages.svg';
 import jgCloneManagerExtensionIcon from './penguinmod/extensions/clonemanager.png';
+import pmInlineBlocksExtensionIcon from './penguinmod/extensions/inlineblocks.png';
 
 // import jgTweeningExtensionIcon from './penguinmod/extensions/tween.png';
 import jgsilvxrcatInterfacesExtensionIcon from './penguinmod/extensions/interfaces2.png';
@@ -96,19 +103,22 @@ import jgsilvxrcatInterfacesExtensionIcon from './penguinmod/extensions/interfac
 // 3D MAN WTF
 import jg3dExtensionIcon from './penguinmod/extensions/3d.png';
 import jg3dInsetExtensionIcon from './penguinmod/extensions/3dicon.png';
+import fr3dPhysicsExtensionIcon from './penguinmod/extensions/3d_physics.png';
+import fr3dPhysicsInsetExtensionIcon from './penguinmod/extensions/3d_physics_icon_sized.png';
 
 // events
 import jgStorageExtensionIcon from './penguinmod/extensions/storage.png';
 import jgTimersExtensionIcon from './penguinmod/extensions/multipletimers.png';
 import jgAdvancedTextExtensionIcon from './penguinmod/extensions/advancedtext.png';
 
-import cloudlinkIcon from './penguinmod/extensions/cloudlinkIcon.svg';
-
 // import jgJavascriptExtensionIcon from './penguinmod/extensions/javascript.png';
+import jgPathfindingExtensionIcon from './penguinmod/extensions/pathfinding.png';
+import jgAnimationExtensionIcon from './penguinmod/extensions/animation.png';
 
 // category expansions
-import pmOperatorsExpansionExtensionIcon from './penguinmod/extensions/operators_expanded.png';
+import pmControlsExpansionExtensionIcon from './penguinmod/extensions/controls_expanded.png';
 import pmSensingExpansionExtensionIcon from './penguinmod/extensions/sensing_expanded.png';
+import pmOperatorsExpansionExtensionIcon from './penguinmod/extensions/operators_expanded.png';
 
 // jg: default icon if you are too lazy to make one and you want me to make one instead lololololololol
 // gsa: ololololololo
@@ -270,14 +280,14 @@ const menuItems = [
         description: 'Create groups of sounds, with pitch, speed and volume control, stopping sounds and more. Called "Extended Sound" in PenguinMod.',
         featured: true
     },
-    {
-        name: 'Operators Expansion',
-        extensionId: 'pmOperatorsExpansion',
-        iconURL: pmOperatorsExpansionExtensionIcon,
-        tags: ['penguinmod', 'categoryexpansion'],
-        description: 'More operators like nand, nor, character code to character, reading multiple lined text line by line, etc.',
-        featured: true
-    },
+    // {
+    //     name: 'Controls Expansion',
+    //     extensionId: 'pmControlsExpansion',
+    //     iconURL: pmControlsExpansionExtensionIcon,
+    //     tags: ['penguinmod', 'categoryexpansion'],
+    //     description: "More control blocks for complex systems or cleaner one-time use blocks.",
+    //     featured: true
+    // },
     {
         name: 'Sensing Expansion',
         extensionId: 'pmSensingExpansion',
@@ -287,14 +297,20 @@ const menuItems = [
         featured: true
     },
     {
-        name: 'Clones+',
-        extensionId: 'https://extensions.turbowarp.org/Lily/ClonesPlus.js', // update reference once file names are updated
-        tags: ['turbowarp', 'categoryexpansion'],
-        iconURL: 'https://extensions.turbowarp.org/images/Lily/ClonesPlus.svg', // update reference once file names are updated
-        insetIconURL: turbowarpIcon,
-        description: "Expansion of Scratch's clone features.",
-        featured: true,
-        twDeveloper: 'LilyMakesThings'
+        name: 'Operators Expansion',
+        extensionId: 'pmOperatorsExpansion',
+        iconURL: pmOperatorsExpansionExtensionIcon,
+        tags: ['penguinmod', 'categoryexpansion'],
+        description: 'More operators like nand, nor, character code to character, reading multiple lined text line by line, etc.',
+        featured: true
+    },
+    {
+        name: 'JSON',
+        extensionId: 'jgJSON',
+        iconURL: jgJSONExtensionIcon,
+        tags: ['penguinmod'],
+        description: 'Blocks for handling JSON objects and Arrays.',
+        featured: true
     },
     {
         name: 'Physics',
@@ -318,6 +334,16 @@ const menuItems = [
         featured: true
     },
     {
+        name: '3D Physics',
+        extensionId: 'fr3d',
+        iconURL: fr3dPhysicsExtensionIcon,
+        tags: ['penguinmod'],
+        customInsetColor: '#D066FE',
+        insetIconURL: fr3dPhysicsInsetExtensionIcon,
+        description: 'Physics for the 3D extension.',
+        featured: true
+    },
+    {
         name: 'Tweening',
         extensionId: 'jgTween',
         credits: 'easings.net & Arrow',
@@ -325,6 +351,16 @@ const menuItems = [
         iconURL: 'https://extensions.turbowarp.org/images/JeremyGamer13/tween.svg',
         tags: ['penguinmod'],
         featured: true
+    },
+    {
+        name: 'Clones+',
+        extensionId: 'https://extensions.turbowarp.org/Lily/ClonesPlus.js',
+        tags: ['turbowarp', 'categoryexpansion'],
+        iconURL: 'https://extensions.turbowarp.org/images/Lily/ClonesPlus.svg',
+        insetIconURL: turbowarpIcon,
+        description: "Expansion of Scratch's clone features.",
+        featured: true,
+        twDeveloper: 'LilyMakesThings'
     },
     {
         name: 'Multiple Timers',
@@ -438,19 +474,19 @@ const menuItems = [
     {
         name: (
             <FormattedMessage
-                defaultMessage="OOP"
-                description="Name of OOP extension"
-                id="jwStructs.jwStructsExtension.name"
+                defaultMessage="Perlin Noise"
+                description="Name of perlin noise extension"
+                id="iygPerlin.iygPerlinExtension.name"
             />
         ),
-        extensionId: 'jwStructs',
+        extensionId: 'iygPerlin',
         tags: ['penguinmod'],
-        iconURL: jwStructsExtensionIcon,
+        iconURL: iygPerlinNoiseExtensionIcon,
         description: (
             <FormattedMessage
-                defaultMessage="OOP blocks. OOp is a programming paradigm that uses objects and their interactions to design applications and computer programs."
-                description="Description of OOP extension"
-                id="jwStructs.jwStructsExtension.description"
+                defaultMessage="Blocks for generating and using Perlin noise. Good for generating terrain, clouds, and other things."
+                description="Description of perlin noise extension"
+                id="iygPerlin.iygPerlinExtension.description"
             />
         ),
         featured: true
@@ -459,7 +495,7 @@ const menuItems = [
         name: 'McUtils',
         extensionId: 'https://extensions.turbowarp.org/Lily/McUtils.js', // update reference once file names are updated
         tags: ['turbowarp'],
-        iconURL: lmsMcUtilsIcon,
+        iconURL: 'https://extensions.turbowarp.org/images/Lily/McUtils.png',
         insetIconURL: turbowarpIcon,
         description: 'Basic utilities for any fast food employee.',
         featured: true,
@@ -544,7 +580,6 @@ const menuItems = [
         ),
         featured: true,
         internetConnectionRequired: false,
-        incompatibleWithScratch: false,
         twDeveloper: 'GarboMuffin'
     },
     {
@@ -562,7 +597,6 @@ const menuItems = [
         ),
         featured: true,
         internetConnectionRequired: false,
-        incompatibleWithScratch: false,
         twDeveloper: 'GarboMuffin'
     },
     {
@@ -801,7 +835,6 @@ const menuItems = [
             />
         ),
         tags: ['tw'],
-        incompatibleWithScratch: true,
         featured: true
     }
 ];
@@ -833,6 +866,26 @@ if ((IsLocal || IsLiveTests) && !urlParams.has('noLiveTest')) {
             featured: true
         },
         {
+            name: (
+                <FormattedMessage
+                    defaultMessage="OOP"
+                    description="Name of OOP extension"
+                    id="jwStructs.jwStructsExtension.name"
+                />
+            ),
+            extensionId: 'jwStructs',
+            tags: ['penguinmod'],
+            iconURL: jwStructsExtensionIcon,
+            description: (
+                <FormattedMessage
+                    defaultMessage="Removed from list. OOP blocks. OOp is a programming paradigm that uses objects and their interactions to design applications and computer programs."
+                    description="Description of OOP extension"
+                    id="jwStructs.jwStructsExtension.description"
+                />
+            ),
+            featured: true
+        },
+        {
             name: 'PenguinMod Permissions',
             extensionId: 'JgPermissionBlocks',
             iconURL: jgPermissionExtensionIcon,
@@ -854,7 +907,7 @@ if ((IsLocal || IsLiveTests) && !urlParams.has('noLiveTest')) {
             eventSubmittor: 'eggo',
             iconURL: jgAdvancedTextExtensionIcon,
             tags: ['penguinmod'],
-            description: 'In development.\nThis extension is still HIGHLY in development. DO NOT USE THIS IN PRODUCTION as blocks are subject to change and may corrupt your projects.',
+            description: 'In development. Currently not publicly available.',
             featured: true
         },
         {
@@ -863,7 +916,7 @@ if ((IsLocal || IsLiveTests) && !urlParams.has('noLiveTest')) {
             iconURL: jgsilvxrcatInterfacesExtensionIcon,
             credits: 'silvxrcat',
             tags: ['penguinmod'],
-            description: 'In development.\nThis extension is still HIGHLY in development. DO NOT USE THIS IN PRODUCTION as blocks are subject to change and may corrupt your projects.',
+            description: 'In development.',
             featured: true
         },
         {
@@ -871,7 +924,7 @@ if ((IsLocal || IsLiveTests) && !urlParams.has('noLiveTest')) {
             extensionId: 'jgCostumeDrawing',
             iconURL: defaultExtensionIcon,
             tags: ['penguinmod'],
-            description: 'Draw on and edit your costumes (either temporarily or not) while the project is running.\nThis extension is still HIGHLY in development. DO NOT USE THIS IN PRODUCTION as blocks are subject to change and may corrupt your projects.',
+            description: 'In development. Currently not publicly available. Draw on and edit your costumes (either temporarily or not) while the project is running.',
             featured: true
         },
         // {
@@ -889,7 +942,43 @@ if ((IsLocal || IsLiveTests) && !urlParams.has('noLiveTest')) {
             tags: ['penguinmod'],
             description: 'dr bob eae',
             featured: true
-        }
+        },
+        {
+            name: 'Inline Blocks',
+            extensionId: 'pmInlineBlocks',
+            iconURL: pmInlineBlocksExtensionIcon,
+            tags: ['penguinmod'],
+            description: 'Create quick blocks for simple tasks. Insert them into any circle spot and have them return any value you want.',
+            featured: true
+        },
+        {
+            name: (
+                <FormattedMessage
+                    defaultMessage="Pathfinding"
+                    description="Name of Pathfinding extension"
+                    id="jgPathfinding.Pathfinding.name"
+                />
+            ),
+            extensionId: 'jgPathfinding',
+            tags: ['penguinmod'],
+            iconURL: jgPathfindingExtensionIcon,
+            description: (
+                <FormattedMessage
+                    defaultMessage="(Unstable and or laggy; Needs further work) Have sprites navigate around obstacles in your game instead of clipping into them."
+                    description="Description of Pathfinding extension"
+                    id="jgPathfinding.Pathfinding.description"
+                />
+            ),
+            featured: true
+        },
+        {
+            name: 'Animation',
+            extensionId: 'jgAnimation',
+            iconURL: jgAnimationExtensionIcon,
+            tags: ['penguinmod'],
+            description: 'In development. Currently not publicly available.',
+            featured: true
+        },
     ];
     extras.forEach(ext => {
         menuItems.push(ext);
