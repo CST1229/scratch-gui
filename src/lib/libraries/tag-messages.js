@@ -156,6 +156,11 @@ export default defineMessages({
         description: 'Tag for filtering a library by TurboWarp',
         id: 'gui.libraryTags.turbowarp'
     },
+    adacraft: {
+        defaultMessage: 'adacraft',
+        description: 'Tag for filtering a library by adacraft',
+        id: 'gui.libraryTags.adacraft'
+    },
     categoryexpansion: {
         defaultMessage: 'Category Expansions',
         description: 'Tag for filtering a library by categoryexpansion',

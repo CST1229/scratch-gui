@@ -210,7 +210,7 @@ module.exports = [
                 chunks: ['credits'],
                 template: 'src/playground/simple.ejs',
                 filename: 'credits.html',
-                title: 'PenguinMod & TurboWarp Credits',
+                title: 'Codebase Editor Credits',
                 noSplash: true,
                 ...htmlWebpackPluginCommon
             }),

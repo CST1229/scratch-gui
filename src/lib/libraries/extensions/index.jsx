@@ -121,6 +121,10 @@ import jgAnimationExtensionIcon from './penguinmod/extensions/animation.png';
 import pmSensingExpansionExtensionIcon from './penguinmod/extensions/sensing_expanded.png';
 import pmOperatorsExpansionExtensionIcon from './penguinmod/extensions/operators_expanded.png';
 
+// adacraft
+import croquetIconURL from './adacraft/croquet/croquet-background.png';
+import croquetInsetIconURL from './adacraft/croquet/croquet-icon.svg';
+
 // jg: default icon if you are too lazy to make one and you want me to make one instead lololololololol
 // gsa: ololololololo
 import defaultExtensionIcon from './penguinmod/extensions/placeholder.png';
@@ -397,6 +401,27 @@ const menuItems = [
         featured: true,
         internetConnectionRequired: true
     },
+    // originally from adacraft
+    // https://gitlab.com/adacraft/scratch-mod/scratch-gui/-/tree/adacraft/main/src/lib/libraries/extensions/
+    {
+        name: 'Croquet',
+        tags: ['adacraft'],
+        extensionId: 'croquet',
+        collaborator: 'ogadaki; Croquet Corporation',
+        iconURL: croquetIconURL,
+        insetIconURL: croquetInsetIconURL,
+        description: (
+            <FormattedMessage
+                defaultMessage="Croquet Collaboration Library. Originally from adacraft."
+                description="User Croquet to create collaborative features"
+                id="gui.extension.croquet.description"
+            />
+        ),
+        featured: true,
+        disabled: false,
+        internetConnectionRequired: true
+    },
+
     {
         name: 'CloudLink',
         extensionId: 'https://extensions.turbowarp.org/cloudlink.js',

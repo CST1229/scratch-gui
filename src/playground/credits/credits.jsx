@@ -64,7 +64,12 @@ const Credits = () => (
                 <br />
                 The Codebase Editor is a modification of PenguinMod,
                 by <a href="https://github.com/CST1229/">CST1229</a>.
-                <br />
+            </p>
+            <p>
+                The Croquet extension is from ogadaki&apos;s <a href="https://adacraft.org">adacraft</a>,
+                which is <a href="https://gitlab.com/adacraft/scratch-mod/">open-source</a>.
+            </p>
+            <p>
                 PenguinMod&apos;s credits can be seen below:
             </p>
         </section>
